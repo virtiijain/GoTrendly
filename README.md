@@ -1,410 +1,348 @@
 ```
 🚧 -------- IN PLANNING — STARTING SOON -------- 🚧
 ```
-# 🚀 JobTrendly
+<div align="center">
 
-> **"Stay Ahead. Stay Relevant."**
-> 
-> Your ultimate platform to explore trending jobs, in-demand skills, and emerging technologies in the IT industry — powered by real-time data.
+# GoTrendly
+### *Real-time trends for jobs, languages, domains & technologies*
 
-![JobTrendly Banner](https://via.placeholder.com/1200x400/6366f1/ffffff?text=JobTrendly+%E2%80%94+Stay+Ahead.+Stay+Relevant.)
+[![Made with FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Frontend Next.js](https://img.shields.io/badge/Frontend-Next.js-000000?style=flat-square&logo=nextdotjs)](https://nextjs.org/)
+[![Database PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-4169E1?style=flat-square&logo=postgresql)](https://postgresql.org/)
+[![Cache Redis](https://img.shields.io/badge/Cache-Redis-DC382D?style=flat-square&logo=redis)](https://redis.io/)
+[![Deploy Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat-square&logo=vercel)](https://vercel.com/)
 
----
+<br/>
 
-## 📌 Table of Contents
+> Like Stack Overflow Trends — but for everything.  
+> Track what's hot in the job market, what languages are rising, which domains are exploding, and what tech is getting left behind.
 
-- [About the Project](#about-the-project)
-- [Key Features](#key-features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Environment Variables](#environment-variables)
-- [Data Sources](#data-sources)
-- [Modules Overview](#modules-overview)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+<br/>
+
+![TechPulse Banner](https://img.shields.io/badge/Status-In%20Development-orange?style=for-the-badge)
+
+</div>
 
 ---
 
-## 🧠 About the Project
+## 📸 What It Does
 
-**JobTrendly** is an open-source IT job trends intelligence platform — think of it as *StackOverflow meets Google Trends meets LinkedIn Analytics*.
+TechPulse aggregates data from **job boards, GitHub, Stack Overflow surveys, and developer communities** to surface real-time and historical trends across:
 
-It aggregates data from job portals, GitHub, developer surveys, and community discussions to give developers, students, and recruiters a **real-time pulse of the IT industry**.
-
-Whether you're a fresher wondering which skill to learn next, a developer planning a career switch, or a recruiter tracking hiring trends — **JobTrendly has you covered.**
-
----
-
-## ✨ Key Features
-
-### 📊 Trending Jobs Dashboard
-- Real-time job demand heatmap across roles and cities
-- Job posting volume graph over time
-- Salary trend graphs by role, experience level, and location
-- Remote vs On-site ratio tracker
-
-### 🛠️ Skills Radar
-- Rising vs declining skills visualized over time
-- Skill co-occurrence map — *"Python developers also need AWS + Docker"*
-- Skill gap analyzer — *"You know X, learn Y to unlock 10 more jobs"*
-- Weekly "Hot Skills" and "Fading Skills" report
-
-### 🌐 Technology Radar
-- Adopt / Trial / Assess / Hold categories (inspired by ThoughtWorks)
-- Community voting on tech stack trends
-- "Trending this month" badges on technologies
-
-### 🗺️ Domain Explorer
-Dedicated trend pages for:
-- 🤖 AI / Machine Learning
-- ☁️ Cloud Computing
-- 🔐 Cybersecurity
-- 🌍 Web Development
-- ⚙️ DevOps & SRE
-- 📱 Mobile Development
-- ⛓️ Blockchain
-- 🎮 Game Development
-
-### 🏙️ City & Country Job Heat Map
-- Interactive world map — hover to see top demanded skills by region
-- India-specific city breakdown (Bangalore, Hyderabad, Pune, Delhi, Mumbai)
-
-### 🏢 Company Tech Stack Tracker
-- What technologies top companies use
-- Which companies are adopting new technologies fastest
-
-### 👥 Community Features
-- Q&A threads — *"Is learning Rust worth it in 2025?"*
-- Upvote / Downvote system
-- Expert badges and reputation points
-- Community-built learning roadmaps
-- Weekly developer polls & surveys
-
-### 🤖 AI-Powered Features
-- Resume scanner — upload CV and get market relevance score
-- Skill prediction engine — *"Next big skill in 6 months"*
-- Personalized career path suggestions
-- Weekly digest emails based on your followed technologies
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-| Technology | Purpose |
+| Category | Examples |
 |---|---|
-| **React.js / Next.js** | UI Framework |
-| **Tailwind CSS** | Styling |
-| **Recharts / D3.js** | Data Visualizations & Charts |
-| **Leaflet.js** | Interactive Maps |
-| **Framer Motion** | Animations |
+| 🧑‍💻 **Jobs** | Backend Dev, ML Engineer, DevOps, Product Designer |
+| 💻 **Languages** | Python, Rust, TypeScript, Go, Kotlin |
+| 🌐 **Domains** | AI/ML, Web3, Cloud, Cybersecurity, Fintech |
+| 🛠️ **Technologies** | React, Docker, LangChain, Terraform, FastAPI |
+
+---
+
+## 🏗️ Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                      DATA SOURCES                       │
+│  LinkedIn · Indeed · GitHub API · SO Survey · Reddit   │
+└────────────────────┬────────────────────────────────────┘
+                     │  scrape / fetch
+┌────────────────────▼────────────────────────────────────┐
+│                BACKEND (Python / FastAPI)                │
+│                                                         │
+│   ┌─────────────┐    ┌──────────────┐                   │
+│   │   Scrapers  │───▶│  Processor   │                   │
+│   │ Scrapy/PW   │    │ NLP · Agg    │                   │
+│   └─────────────┘    └──────┬───────┘                   │
+│                             │                           │
+│              ┌──────────────▼──────────────┐            │
+│              │   PostgreSQL  +  Redis       │            │
+│              │   Trends data   Cache        │            │
+│              └──────────────┬──────────────┘            │
+└─────────────────────────────│───────────────────────────┘
+                              │  REST API
+┌─────────────────────────────▼───────────────────────────┐
+│                  FRONTEND (Next.js)                      │
+│                                                         │
+│   Trend Charts · Job Explorer · Language Rankings       │
+│       Domain Heatmap · Search · Auth                    │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🧰 Tech Stack
 
 ### Backend
-| Technology | Purpose |
+| Tool | Purpose |
 |---|---|
-| **Node.js + Express** | REST API Server |
-| **Python (FastAPI)** | Data Processing & ML Models |
-| **GraphQL** | Flexible Data Queries |
-| **Redis** | Caching & Real-time Data |
+| **Python 3.11+** | Core language |
+| **FastAPI** | REST API framework |
+| **Scrapy + Playwright** | Web scraping & JS-rendered pages |
+| **spaCy** | NLP — skill extraction from job descriptions |
+| **Celery + Redis** | Scheduled background scraping jobs |
+| **PostgreSQL** | Primary database |
+| **SQLAlchemy** | ORM |
+| **Alembic** | DB migrations |
 
-### Database
-| Technology | Purpose |
+### Frontend
+| Tool | Purpose |
 |---|---|
-| **PostgreSQL** | Primary Relational Database |
-| **MongoDB** | Unstructured Community Data |
-| **Elasticsearch** | Search & Analytics Engine |
+| **Next.js 14** | React framework with SSR |
+| **Tailwind CSS** | Styling |
+| **Recharts / D3.js** | Trend visualizations |
+| **NextAuth.js** | Authentication |
+| **Meilisearch** | Fast in-app search |
+| **SWR** | Data fetching & caching |
 
-### Data & ML
-| Technology | Purpose |
+### Infrastructure
+| Tool | Purpose |
 |---|---|
-| **Apache Kafka** | Real-time Data Streaming |
-| **Apache Airflow** | Data Pipeline Orchestration |
-| **Scikit-learn / TensorFlow** | Trend Prediction Models |
-| **Pandas / NumPy** | Data Processing |
-
-### DevOps & Infrastructure
-| Technology | Purpose |
-|---|---|
-| **Docker + Kubernetes** | Containerization |
-| **AWS / GCP** | Cloud Hosting |
-| **GitHub Actions** | CI/CD Pipeline |
-| **Nginx** | Reverse Proxy |
+| **Docker + Docker Compose** | Containerization |
+| **Vercel** | Frontend deployment |
+| **Railway / Render** | Backend + DB hosting |
+| **GitHub Actions** | CI/CD pipeline |
+| **Cron / Celery Beat** | Scheduled data refresh |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-jobtrendly/
+techpulse/
+├── backend/
+│   ├── app/
+│   │   ├── api/            # FastAPI route handlers
+│   │   ├── scrapers/       # Scrapy spiders & Playwright scripts
+│   │   ├── processors/     # NLP, aggregation logic
+│   │   ├── models/         # SQLAlchemy models
+│   │   ├── schemas/        # Pydantic schemas
+│   │   └── core/           # Config, DB connection, Redis
+│   ├── celery_worker.py
+│   ├── Dockerfile
+│   └── requirements.txt
 │
-├── 📁 frontend/                  # Next.js Frontend Application
-│   ├── 📁 components/
-│   │   ├── Dashboard/
-│   │   ├── SkillRadar/
-│   │   ├── TechRadar/
-│   │   ├── JobMap/
-│   │   └── Community/
-│   ├── 📁 pages/
-│   ├── 📁 hooks/
-│   ├── 📁 utils/
-│   └── 📁 styles/
+├── frontend/
+│   ├── app/                # Next.js app directory
+│   │   ├── page.tsx        # Home — trending now
+│   │   ├── languages/      # Language trends page
+│   │   ├── jobs/           # Job market page
+│   │   ├── domains/        # Domain trends page
+│   │   └── compare/        # Side-by-side comparison
+│   ├── components/
+│   │   ├── charts/         # Recharts wrappers
+│   │   ├── cards/          # Trend cards
+│   │   └── ui/             # Shared UI components
+│   └── lib/                # API client, helpers
 │
-├── 📁 backend/                   # Node.js + Express API
-│   ├── 📁 controllers/
-│   ├── 📁 models/
-│   ├── 📁 routes/
-│   ├── 📁 middlewares/
-│   └── 📁 services/
-│
-├── 📁 data-pipeline/             # Python Data Collection & Processing
-│   ├── 📁 scrapers/
-│   │   ├── github_scraper.py
-│   │   ├── indeed_scraper.py
-│   │   ├── linkedin_scraper.py
-│   │   └── stackoverflow_scraper.py
-│   ├── 📁 processors/
-│   ├── 📁 models/                # ML Trend Prediction Models
-│   └── 📁 airflow_dags/
-│
-├── 📁 ml-service/                # FastAPI ML Microservice
-│   ├── 📁 models/
-│   ├── 📁 training/
-│   └── main.py
-│
-├── 📁 infrastructure/            # Docker, K8s, CI/CD configs
-│   ├── docker-compose.yml
-│   ├── 📁 kubernetes/
-│   └── 📁 nginx/
-│
-├── 📁 docs/                      # Documentation
-│   ├── API.md
-│   ├── CONTRIBUTING.md
-│   └── ARCHITECTURE.md
-│
-├── .env.example
-├── .gitignore
-├── README.md
-└── LICENSE
+├── docker-compose.yml
+├── .github/workflows/      # CI/CD
+└── README.md
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🗄️ Database Schema
 
-### Prerequisites
+```sql
+-- Core trend snapshot (aggregated counts per tag per day)
+CREATE TABLE trends (
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  tag         TEXT NOT NULL,          -- e.g. "python", "react"
+  category    TEXT NOT NULL,          -- 'language' | 'job' | 'domain' | 'tech'
+  count       INTEGER NOT NULL,
+  source      TEXT,                   -- 'github' | 'indeed' | 'so_survey'
+  region      TEXT DEFAULT 'global',
+  recorded_at DATE NOT NULL DEFAULT CURRENT_DATE
+);
 
-Make sure you have the following installed:
-- **Node.js** v18+
-- **Python** 3.10+
-- **Docker** & Docker Compose
-- **PostgreSQL** 14+
-- **Redis** 7+
+-- Raw job postings
+CREATE TABLE jobs (
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  title       TEXT NOT NULL,
+  company     TEXT,
+  skills      TEXT[],                 -- extracted skill tags
+  domain      TEXT,
+  salary_min  INTEGER,
+  salary_max  INTEGER,
+  location    TEXT,
+  remote      BOOLEAN DEFAULT FALSE,
+  posted_at   TIMESTAMP,
+  source_url  TEXT UNIQUE
+);
 
-### Installation
-
-**1. Clone the repository**
-```bash
-git clone https://github.com/yourusername/jobtrendly.git
-cd jobtrendly
+-- Weekly rollups for historical charts
+CREATE TABLE snapshots (
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  week_start  DATE NOT NULL,
+  tag         TEXT NOT NULL,
+  category    TEXT NOT NULL,
+  total_count INTEGER NOT NULL,
+  rank        INTEGER
+);
 ```
 
-**2. Setup Frontend**
+---
+
+## 🔌 API Endpoints
+
+```
+GET /api/trends/languages     → top languages ranked by count
+GET /api/trends/jobs          → trending job titles
+GET /api/trends/domains       → rising domains (AI, Web3, etc.)
+GET /api/trends/technologies  → hot frameworks & tools
+
+GET /api/trends/history?tag=python&days=90   → historical chart data
+GET /api/trends/compare?tags=rust,go,python  → multi-tag comparison
+
+GET /api/jobs/search?q=ml+engineer&remote=true
+GET /api/jobs/skills/top                     → top 20 in-demand skills
+```
+
+---
+
+## 🗓️ Build Roadmap — Week by Week
+
+### ✅ Week 1 — Data Foundation
+> *Goal: Get real data flowing into a database*
+
+- [ ] Set up PostgreSQL schema (`trends`, `jobs`, `snapshots`)
+- [ ] Write scraper for **Indeed / LinkedIn** job postings (Playwright)
+- [ ] Write **GitHub API** poller for language stats
+- [ ] Download and parse **Stack Overflow Survey** CSV
+- [ ] Build basic NLP pipeline to extract skills from job descriptions
+- [ ] Verify data quality — dedup, normalize tag names
+- [ ] Set up Docker Compose (Postgres + Redis + backend)
+
+**Deliverable:** Populated DB with 1000+ job records and language counts
+
+---
+
+### ✅ Week 2 — Backend API
+> *Goal: Expose clean, fast API endpoints*
+
+- [ ] Build FastAPI app structure with SQLAlchemy
+- [ ] Implement `/trends/languages`, `/trends/jobs`, `/trends/domains`
+- [ ] Add Redis caching (TTL 1 hour for aggregate queries)
+- [ ] Set up Celery Beat — daily scraping cron job
+- [ ] Write `/trends/history` endpoint with date filtering
+- [ ] Add basic rate limiting (slowapi)
+- [ ] Write API tests with pytest
+
+**Deliverable:** Working API returning real trend data, auto-refreshed daily
+
+---
+
+### ✅ Week 3 — Frontend
+> *Goal: Build the UI — charts, rankings, search*
+
+- [ ] Bootstrap Next.js 14 with Tailwind
+- [ ] Build **Homepage** — "Trending Now" cards for each category
+- [ ] Build **Languages page** — bar chart + ranked list with badges
+- [ ] Build **Jobs page** — top titles, top skills, remote vs on-site split
+- [ ] Build **Domains page** — heatmap or treemap of rising domains
+- [ ] Add **Compare page** — multi-tag line chart (like Google Trends)
+- [ ] Wire up SWR for data fetching with loading skeletons
+- [ ] Add Meilisearch for tag/skill search
+
+**Deliverable:** Fully functional UI connected to live API
+
+---
+
+### ✅ Week 4 — Polish & Deploy
+> *Goal: Ship it, make it look great*
+
+- [ ] Add NextAuth (GitHub login) + saved watchlist feature
+- [ ] Mobile responsive pass — fix all breakpoints
+- [ ] Add dark mode
+- [ ] SEO — meta tags, OG images, sitemap
+- [ ] Deploy frontend → **Vercel**
+- [ ] Deploy backend + worker → **Railway** (or Fly.io)
+- [ ] Set up GitHub Actions CI (lint → test → deploy on merge)
+- [ ] Add error monitoring (Sentry)
+- [ ] Performance audit — Lighthouse score > 90
+
+**Deliverable:** Live production URL, CI/CD running, cron jobs active
+
+---
+
+## 🚀 Getting Started (Local Dev)
+
+### Prerequisites
+- Python 3.11+
+- Node.js 18+
+- Docker & Docker Compose
+
+### 1. Clone & setup
+
+```bash
+git clone https://github.com/yourusername/techpulse.git
+cd techpulse
+```
+
+### 2. Start services
+
+```bash
+docker-compose up -d   # starts Postgres + Redis
+```
+
+### 3. Backend
+
+```bash
+cd backend
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+
+# Run migrations
+alembic upgrade head
+
+# Start API
+uvicorn app.main:app --reload --port 8000
+
+# Start Celery worker (separate terminal)
+celery -A celery_worker worker --loglevel=info
+```
+
+### 4. Frontend
+
 ```bash
 cd frontend
 npm install
+cp .env.example .env.local   # add your API URL
 npm run dev
 ```
 
-**3. Setup Backend**
-```bash
-cd backend
-npm install
-cp .env.example .env
-# Fill in your environment variables
-npm run dev
-```
-
-**4. Setup Data Pipeline**
-```bash
-cd data-pipeline
-pip install -r requirements.txt
-python run_scrapers.py
-```
-
-**5. Run with Docker (Recommended)**
-```bash
-docker-compose up --build
-```
-
-**6. Open in browser**
-```
-http://localhost:3000
-```
+Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 🔐 Environment Variables
+## 🌱 Future Roadmap
 
-Create a `.env` file in the root directory:
-
-```env
-# App
-NODE_ENV=development
-PORT=5000
-FRONTEND_URL=http://localhost:3000
-
-# Database
-DATABASE_URL=postgresql://user:password@localhost:5432/jobtrendly
-MONGODB_URI=mongodb://localhost:27017/jobtrendly
-REDIS_URL=redis://localhost:6379
-
-# Authentication
-JWT_SECRET=your_super_secret_key
-JWT_EXPIRES_IN=7d
-
-# External APIs
-GITHUB_API_TOKEN=your_github_token
-RAPIDAPI_KEY=your_rapidapi_key
-GOOGLE_TRENDS_API_KEY=your_google_key
-
-# Email
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your_email@gmail.com
-SMTP_PASS=your_app_password
-
-# ML Service
-ML_SERVICE_URL=http://localhost:8000
-```
-
----
-
-## 📡 Data Sources
-
-| Source | Data Collected | Method |
-|---|---|---|
-| **GitHub API** | Repository stars, language trends, contributor activity | REST API |
-| **Stack Overflow** | Developer survey data, tag trends, question volume | Public Dataset + API |
-| **Indeed / Naukri** | Job postings, salary data, required skills | Web Scraping |
-| **LinkedIn** | Job demand, company hiring trends | Web Scraping |
-| **Google Trends** | Search interest over time | PyTrends Library |
-| **Glassdoor** | Salary benchmarks, company reviews | Web Scraping |
-| **Reddit / Hacker News** | Community discussions, tech sentiment | API |
-| **npm / PyPI** | Package download trends | Public APIs |
-
----
-
-## 📦 Modules Overview
-
-### 1. 📊 Trend Engine
-Collects, processes, and scores technology and job trends using weighted signals from multiple data sources. Updates every 24 hours.
-
-### 2. 🤖 ML Prediction Service
-A FastAPI microservice that runs trend prediction models. Predicts which skills will be in demand 3-6 months from now based on historical patterns.
-
-### 3. 👤 User Service
-Handles authentication, user profiles, skill tracking, and personalized recommendations.
-
-### 4. 💬 Community Service
-Manages Q&A threads, voting, badges, roadmaps, and weekly polls.
-
-### 5. 📧 Notification Service
-Sends personalized weekly digest emails and real-time alerts when followed technologies spike in demand.
-
-### 6. 🗺️ Geo Service
-Processes location-based job data and powers the interactive world map.
-
----
-
-## 🗺️ Roadmap
-
-### ✅ Phase 1 — MVP (Month 1-2)
-- [ ] Basic job trends dashboard
-- [ ] Top trending skills list
-- [ ] Technology radar (static data)
-- [ ] User authentication
-- [ ] Basic search functionality
-
-### 🔄 Phase 2 — Data Layer (Month 3-4)
-- [ ] GitHub & Stack Overflow data pipeline
-- [ ] Indeed/Naukri job scraper
-- [ ] Interactive charts & graphs
-- [ ] City-based job heatmap
-- [ ] Skill co-occurrence map
-
-### 🚀 Phase 3 — Community (Month 5-6)
-- [ ] Q&A discussion forum
-- [ ] User profiles & badges
-- [ ] Community roadmaps
-- [ ] Weekly polls & surveys
-- [ ] Expert verification system
-
-### 🤖 Phase 4 — AI Features (Month 7-8)
-- [ ] Resume scanner & market score
-- [ ] ML-based trend prediction
-- [ ] Personalized skill recommendations
-- [ ] Weekly AI digest emails
-- [ ] Skill gap analyzer
-
-### 🌍 Phase 5 — Scale (Month 9-12)
-- [ ] Mobile app (React Native)
-- [ ] API for third-party developers
-- [ ] Premium recruiter dashboard
-- [ ] Multi-language support (Hindi, etc.)
-- [ ] Company tech stack tracker
+- [ ] **v2 — Personalization** — skill gap analysis: "you know X, learn Y next"
+- [ ] **v2 — Email digest** — weekly trends newsletter
+- [ ] **v2 — Salary data** — scrape & normalize compensation by role + location
+- [ ] **v3 — AI Insights** — LLM-generated weekly trend summaries
+- [ ] **v3 — Embeds** — shareable trend widgets for blogs/portfolios
+- [ ] **v3 — API access** — public API for developers
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are what make the open-source community amazing! Any contributions you make are **greatly appreciated**.
+PRs welcome! Please open an issue first to discuss major changes.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) for details on our code of conduct and contribution guidelines.
-
----
-
-## 👨‍💻 Authors & Contributors
-
-| Role | Name |
-|---|---|
-| **Project Lead** | Your Name |
-| **Backend Dev** | Contributor Name |
-| **Frontend Dev** | Contributor Name |
-| **Data Engineer** | Contributor Name |
+1. Fork the repo
+2. Create a feature branch (`git checkout -b feature/add-rust-scraper`)
+3. Commit your changes (`git commit -m 'feat: add Rust ecosystem scraper'`)
+4. Push and open a Pull Request
 
 ---
 
 ## 📄 License
 
-Distributed under the **MIT License**. See `LICENSE` for more information.
-
----
-
-## 📬 Contact
-
-**JobTrendly Team**
-
-- 🌐 Website: [jobtrendly.io](https://jobtrendly.io)
-- 📧 Email: hello@jobtrendly.io
-- 🐦 Twitter: [@JobTrendly](https://twitter.com/jobtrendly)
-- 💼 LinkedIn: [JobTrendly](https://linkedin.com/company/jobtrendly)
-- 🐙 GitHub: [github.com/yourusername/jobtrendly](https://github.com/yourusername/jobtrendly)
+MIT © 2025 TechPulse
 
 ---
 
 <div align="center">
-
-**⭐ Star this repo if you find it helpful!**
-
-Made with ❤️ for the Developer Community
-
+  <sub>Built with ❤️ to help developers stay ahead of the curve</sub>
 </div>
