@@ -1,0 +1,63 @@
+# ========================
+# Python / FastAPI
+# ========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ========================
+# Virtual Environment
+# ========================
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# ========================
+# Database
+# ========================
+*.db
+*.sqlite3
+*.sql.bak
+migrations/versions/__pycache__/
+
+# ========================
+# Redis
+# ========================
+dump.rdb
+
+# ========================
+# Testing
+# ========================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+coverage.xml
+*.cover
+nosetests.xml
+
+# ========================
+# Alembic
+# ========================
+alembic.ini.bak
